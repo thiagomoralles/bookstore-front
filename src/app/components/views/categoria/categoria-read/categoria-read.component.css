@@ -1,0 +1,19 @@
+.content {
+    width: 90%;
+    margin: 1rem auto;
+    margin-left: 10rem;
+    margin-right: -10rem;
+}
+
+.title {
+    text-align: center;
+    color: rgb(173, 168, 168);
+}
+
+.corpo {
+    width: 100%;
+}
+
+.table {
+    width: 100%;
+}
