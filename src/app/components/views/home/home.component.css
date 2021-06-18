@@ -1,8 +1,6 @@
 .home {
     width: 90%;
     margin: 1rem auto;
-    margin-left: 10rem;
-    margin-right: -10rem;
 }
 
 @media(max-width: 450px) {
