@@ -46,7 +46,10 @@ export class CategoriaUpdateComponent implements OnInit {
       this.categoriaService.apresentarMensagem("Categoria atualizada com sucesso!");
     }, exception => {
       console.log(exception);
-      this.categoriaService.apresentarMensagem(exception.error.error);
+      //this.categoriaService.apresentarMensagem(exception.error.error);
+      for (var i = 0; i < exception.error.fieldErrors.length; i++) {
+        this.categoriaService.apresentarMensagem(exception.error.fieldErrors[i].message)
+      }
     }) 
   }
 }

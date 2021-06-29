@@ -24,7 +24,7 @@ export class CategoriaReadComponent implements OnInit {
 
   findAll() {
     this.categoriaService.findAll().subscribe((resp) => {
-      console.log(resp);
+      //console.log(resp);
       this.categorias = resp;
     });
   }
