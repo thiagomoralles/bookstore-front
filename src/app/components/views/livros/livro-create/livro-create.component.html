@@ -1,0 +1,28 @@
+<div class="content">
+    <div class="title">
+        <h1>Novo Livro</h1>
+    </div>
+</div>
+
+<form>
+    <mat-form-field class="forms">
+        <mat-label>Titulo</mat-label>
+        <input [(ngModel)]="livro.titulo" [formControl]="titulo" required matInput type="text" name="nome" maxlength="100" placeholder="Ex. Java - Como Programar">
+        <mat-error *ngIf="titulo.invalid">{{ getMenssage() }}</mat-error>
+    </mat-form-field>
+    <mat-form-field class="forms">
+        <mat-label>Autor</mat-label>
+        <input [(ngModel)]="livro.nomeAutor" [formControl]="nomeAutor" required matInput type="text" name="nome" maxlength="100" placeholder="Ex. Deitel">
+        <mat-error *ngIf="nomeAutor.invalid">{{ getMenssage() }}</mat-error>
+    </mat-form-field>
+    <mat-form-field class="forms">
+        <mat-label>Texto</mat-label>
+        <textarea [(ngModel)]="livro.texto" [formControl]="texto" required matInput type="text" name="texto" placeholder="Descreva o livro"></textarea>
+        <mat-error *ngIf="texto.invalid">{{ getMenssage() }}</mat-error>
+    </mat-form-field>
+    <div class="buttons">
+        <button (click)="create()" [disabled]="getMenssage()" class="mat-elevation-z8" mat-stroked-button color="primary">SALVAR</button>
+        <button (click)="cancelar()" class="mat-elevation-z8" mat-stroked-button color="warn">CANCELAR</button>
+    </div>
+
+</form>
