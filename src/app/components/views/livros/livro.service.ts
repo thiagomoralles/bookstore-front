@@ -24,11 +24,21 @@ export class LivroService {
     return this.http.get<Livro[]>(url, {params});
   }
 
+  findById(id: String): Observable<Livro> {
+    const url = `${this.baseUrl}/livro/${id}`
+    return this.http.get<Livro>(url);
+  }
+
   create(idCategoria: string, livro: Livro): Observable<Livro> {
     const url = `${this.baseUrl}/livro/create`
     let params = new HttpParams()
       .set('categoria', idCategoria)
     return this.http.post<Livro>(url, livro, {params});
+  }
+
+  update(id: String, livro: Livro): Observable<Livro> {
+    const url = `${this.baseUrl}/livro/update/${id}`
+    return this.http.put<Livro>(url, livro);
   }
 
   apresentarMensagem(msg: String) {

@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CategoriaService } from '../../categoria/categoria.service';
 import { Livro } from '../livro.model';
 import { LivroService } from '../livro.service';
 
 @Component({
-  selector: 'app-livro-create',
-  templateUrl: './livro-create.component.html',
-  styleUrls: ['./livro-create.component.css']
+  selector: 'app-livro-update',
+  templateUrl: './livro-update.component.html',
+  styleUrls: ['./livro-update.component.css']
 })
-export class LivroCreateComponent implements OnInit {
+export class LivroUpdateComponent implements OnInit {
 
   titulo = new FormControl('', [Validators.minLength(3)]);
   nomeAutor = new FormControl('', [Validators.minLength(3)]);
@@ -18,7 +19,7 @@ export class LivroCreateComponent implements OnInit {
   livro: Livro = {
     titulo: '',
     nomeAutor: '',
-    texto: '', 
+    texto: '',
 
     categoria: {
       nome: '',
@@ -30,13 +31,26 @@ export class LivroCreateComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private livroService: LivroService
+    private livroService: LivroService,
+    private categoriaService: CategoriaService
   ) { }
 
   ngOnInit(): void {
     this.idCategoria = this.route.snapshot.paramMap.get("idCategoria")!;
-    this.livro.categoria!.id = this.idCategoria;
+    this.livro.id = this.route.snapshot.paramMap.get("id")!;
+    this.findById();
   }
+
+  findById(): void {
+    this.livroService.findById(this.livro.id!).subscribe((resposta) => {
+      console.log("livro: "+resposta);
+      console.log("livro.categoria: "+resposta.categoria);
+      this.livro = resposta;
+      this.livro.categoria = resposta.categoria;
+    })
+  }
+
+  
 
   getMenssage() {
     if (this.titulo.invalid) {
@@ -55,10 +69,10 @@ export class LivroCreateComponent implements OnInit {
     this.router.navigate([`categorias/${this.idCategoria}/livros`]);
   }
 
-  create(): void {
-    this.livroService.create(this.idCategoria, this.livro).subscribe((resposta) => {
+  update(): void {
+    this.livroService.update(this.livro.id!, this.livro).subscribe((resposta) => {
       this.cancelar();
-      this.livroService.apresentarMensagem("Livro criado com sucesso!");
+      this.livroService.apresentarMensagem("Livro atualizado com sucesso!");
     }, (exception) => {
       for (let i = 0; i < exception.error.fieldErrors.length; i++) {
         this.livroService.apresentarMensagem(exception.error.fieldErrors[i].message);

@@ -26,7 +26,7 @@ export class LivroReadAllComponent implements OnInit {
 
   findByAllByCategoria(): void {
     this.livroSevice.findAllByCategoria(this.idCategoria).subscribe((resposta) => {
-      console.log(resposta)
+      //console.log(resposta)
       this.livros = resposta;
     })
   }
