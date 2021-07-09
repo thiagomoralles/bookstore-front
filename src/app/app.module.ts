@@ -28,6 +28,7 @@ import { CategoriaUpdateComponent } from './components/views/categoria/categoria
 import { LivroReadAllComponent } from './components/views/livros/livro-read-all/livro-read-all.component';
 import { LivroCreateComponent } from './components/views/livros/livro-create/livro-create.component';
 import { LivroUpdateComponent } from './components/views/livros/livro-update/livro-update.component';
+import { NgxSmartModalModule } from 'ngx-smart-modal';
 
 
 @NgModule({
@@ -62,6 +63,7 @@ import { LivroUpdateComponent } from './components/views/livros/livro-update/liv
     MatInputModule,
     MatFormFieldModule,
     MatSnackBarModule,
+    NgxSmartModalModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -41,6 +41,11 @@ export class LivroService {
     return this.http.put<Livro>(url, livro);
   }
 
+  delete(id: String): Observable<void> {
+    const url = `${this.baseUrl}/livro/${id}`;
+    return this.http.delete<void>(url);
+  }
+
   apresentarMensagem(msg: String) {
     this.snack.open(`${msg}`, 'OK', {
       horizontalPosition: 'end',
